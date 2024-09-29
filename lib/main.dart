@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arrNames=['John','Bill','Tony'];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -17,28 +18,17 @@ class MyApp extends StatelessWidget {
           centerTitle: true ,
 
         ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 10, 30, 40),
-          child: Container(
-            height: 300,
-            width: 200,
-            decoration: const BoxDecoration(
-              color: Colors.blue
-            ),
-            child: TextButton(
-              onPressed: (){
-                print('Text Button Pressed');
-              },
-              child: const Text('CTE'),
-            )
-            ,
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            print('Button Pressed');
-          },
-        ),
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              return Text(arrNames[index]);
+            },
+            separatorBuilder: (context, index) {
+              return const Divider(
+                height: 50,
+                thickness: 2.5,
+              );
+            },
+            itemCount: arrNames.length)
         
       ),
     );
